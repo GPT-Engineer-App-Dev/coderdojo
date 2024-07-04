@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { CircleUser, Menu, Package2 } from "lucide-react";
+import { CircleUser, Menu, Package2, LogOut } from "lucide-react";
 import { NavLink, Outlet } from "react-router-dom";
 import { navItems } from "../App";
 
@@ -20,7 +20,9 @@ const Layout = () => {
       <div className="flex flex-col">
         <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
           <MobileSidebar />
-          <div className="w-full flex-1">{/* Add nav bar content here! */}</div>
+          <div className="w-full flex-1">
+            <h1 className="text-xl font-semibold">Page Title</h1>
+          </div>
           <UserDropdown />
         </header>
         <main className="flex-grow p-4 overflow-auto">
@@ -50,6 +52,12 @@ const Sidebar = () => (
           ))}
         </nav>
       </div>
+      <div className="p-4">
+        <Button variant="outline" className="w-full">
+          <LogOut className="mr-2 h-4 w-4" />
+          Logout
+        </Button>
+      </div>
     </div>
   </div>
 );
@@ -73,9 +81,14 @@ const MobileSidebar = () => (
         </NavLink>
         {navItems.map((item) => (
           <SidebarNavLink key={item.to} to={item.to}>
+            {item.icon}
             {item.title}
           </SidebarNavLink>
         ))}
+        <Button variant="outline" className="w-full mt-4">
+          <LogOut className="mr-2 h-4 w-4" />
+          Logout
+        </Button>
       </nav>
     </SheetContent>
   </Sheet>
